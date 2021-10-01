@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:smart_travel_planning_appli/Home/Chitwan_package/Cpackage.dart';
 import 'package:smart_travel_planning_appli/Home/Kathmandu_package/Kpackage.dart';
 import 'package:smart_travel_planning_appli/Home/Pokhara_package/Ppackage.dart';
 import 'package:smart_travel_planning_appli/Home/packages.dart';
@@ -270,6 +271,9 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                 ),
               ),
 
+
+
+
               //Text for packages
               Padding(
                 padding: EdgeInsets.only(top: 48, left: 28.8),
@@ -287,6 +291,11 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                   ),
                 ),
               ),
+
+
+
+
+
               //Text for Kathmandu packages
               Padding(
                 padding: EdgeInsets.only(top: 48, left: 28.8),
@@ -304,6 +313,9 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                   ),
                 ),
               ),
+
+
+              // Text for Pokhara Packages
               Padding(
                 padding: EdgeInsets.only(top: 48, left: 28.8),
                 child: Container(
@@ -312,6 +324,25 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                     onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => PokharaPackageScreen())),
                     child: Text(
                       'Pokhara Packages',
+                      style: TextStyle(
+                        fontSize: 30,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+
+
+              //Text for Chitwan packages
+              Padding(
+                padding: EdgeInsets.only(top: 48, left: 28.8),
+                child: Container(
+                  height: 50,
+                  child: GestureDetector(
+                    onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => ChitwanPackageScreen())),
+                    child: Text(
+                      'Packages',
                       style: TextStyle(
                         fontSize: 30,
                         fontWeight: FontWeight.bold,
