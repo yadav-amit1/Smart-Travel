@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:smart_travel_planning_appli/Home/Chitwan_package/CApi_service.dart';
+import 'package:smart_travel_planning_appli/Home/FilterScreen/UApi_service.dart';
 //import 'package:search_list_api_working/search.dart';
-import 'package:smart_travel_planning_appli/Home/Chitwan_package/Cuser_model.dart';
+import 'package:smart_travel_planning_appli/Home/FilterScreen/Uuser_model.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class ChitwanPackageScreen extends StatefulWidget {
+class Under5k extends StatefulWidget {
 
   @override
-  _ChitwanPackageScreenState createState() => _ChitwanPackageScreenState();
+  _Under5kState createState() => _Under5kState();
 }
 
-class _ChitwanPackageScreenState extends State<ChitwanPackageScreen> {
-  FetchCUserlist _cuserlist = FetchCUserlist();
+class _Under5kState extends State<Under5k> {
+  FetchUUserlist _Uuserlist = FetchUUserlist();
 
   @override
   Widget build(BuildContext context) {
@@ -31,8 +31,8 @@ class _ChitwanPackageScreenState extends State<ChitwanPackageScreen> {
         ),
         body: Container(
           padding: EdgeInsets.all(20),
-          child: FutureBuilder<List<CUserlist>>(
-              future: _cuserlist.getCuserlist(),
+          child: FutureBuilder<List<UUserlist>>(
+              future: _Uuserlist.getUuserlist(),
               builder: (context, snapshot) {
                 var data = snapshot.data;
                 return ListView.builder(
@@ -61,7 +61,7 @@ class _ChitwanPackageScreenState extends State<ChitwanPackageScreen> {
                                       ),
                                       child: Center(
                                         child: Image.network(
-                                          '${data[index].cimage}',
+                                          '${data[index].uimage}',
                                         ),
                                       ),
                                     ),
@@ -72,14 +72,14 @@ class _ChitwanPackageScreenState extends State<ChitwanPackageScreen> {
                                             CrossAxisAlignment.start,
                                             children: [
                                               Text(
-                                                '${data[index].cname.toString()}',
+                                                '${data[index].uname.toString()}',
                                                 style: TextStyle(
                                                     fontSize: 18,
                                                     fontWeight: FontWeight.w600),
                                               ),
                                               SizedBox(height: 10),
                                               Text(
-                                                '${data[index].cduration.toString()}',
+                                                '${data[index].uduration.toString()}',
                                                 style: TextStyle(
                                                   color: Colors.white70,
                                                   fontSize: 14,
@@ -87,7 +87,7 @@ class _ChitwanPackageScreenState extends State<ChitwanPackageScreen> {
                                                 ),
                                               ),
                                               Text(
-                                                '${data[index].cprice.toString()}',
+                                                '${data[index].uprice.toString()}',
                                                 style: TextStyle(
                                                   color: Colors.white,
                                                   fontSize: 14,
@@ -99,9 +99,9 @@ class _ChitwanPackageScreenState extends State<ChitwanPackageScreen> {
                                                   foregroundColor: MaterialStateProperty.all<Color>(Colors.blue),
                                                 ),
                                                 onPressed: () async {
-                                                  dynamic curls = '${data[index].curl}';
-                                                  if(await canLaunch(curls)) {
-                                                    launch(curls);
+                                                  dynamic uurls = '${data[index].uurl}';
+                                                  if(await canLaunch(uurls)) {
+                                                    launch(uurls);
                                                   }else {
                                                     throw 'could not launch';
                                                   }} ,

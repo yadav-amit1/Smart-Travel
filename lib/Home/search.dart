@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:url_launcher/url_launcher.dart';
 import 'Api_service.dart';
 import 'user_model.dart';
 
@@ -66,7 +66,20 @@ class SearchUser extends SearchDelegate {
                               style: TextStyle(
                                   fontSize: 18, fontWeight: FontWeight.w600),
                             ),
-                            SizedBox(height: 10),
+                            TextButton(
+                              style: ButtonStyle(
+                                foregroundColor: MaterialStateProperty.all<Color>(Colors.blue),
+                              ),
+                              onPressed: () async {
+                                dynamic urls = '${data[index].url}';
+                                if(await canLaunch(urls)) {
+                                  launch(urls);
+                                }else {
+                                  throw 'could not launch';
+                                }} ,
+                              child: Text('BOOK NOW'),
+                            )
+                            ,SizedBox(height: 10),
                           ])
                     ],
                   ),

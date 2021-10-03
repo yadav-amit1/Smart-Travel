@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:smart_travel_planning_appli/Home/Chitwan_package/CApi_service.dart';
+import 'package:smart_travel_planning_appli/Home/FilterScreen/AApi_service.dart';
 //import 'package:search_list_api_working/search.dart';
-import 'package:smart_travel_planning_appli/Home/Chitwan_package/Cuser_model.dart';
+import 'package:smart_travel_planning_appli/Home/FilterScreen/Auser_model.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class ChitwanPackageScreen extends StatefulWidget {
+class Above5k extends StatefulWidget {
 
   @override
-  _ChitwanPackageScreenState createState() => _ChitwanPackageScreenState();
+  _Above5kState createState() => _Above5kState();
 }
 
-class _ChitwanPackageScreenState extends State<ChitwanPackageScreen> {
-  FetchCUserlist _cuserlist = FetchCUserlist();
+class _Above5kState extends State<Above5k> {
+  FetchAUserlist _Auserlist = FetchAUserlist();
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +19,7 @@ class _ChitwanPackageScreenState extends State<ChitwanPackageScreen> {
       child: Scaffold(
         backgroundColor: Color(0xFF320D36),
         appBar: AppBar(
-          title: Text('Packages'),
+          title: Text('Above 5K'),
           // actions: [
           //   IconButton(
           //     onPressed: () {
@@ -31,8 +31,8 @@ class _ChitwanPackageScreenState extends State<ChitwanPackageScreen> {
         ),
         body: Container(
           padding: EdgeInsets.all(20),
-          child: FutureBuilder<List<CUserlist>>(
-              future: _cuserlist.getCuserlist(),
+          child: FutureBuilder<List<AUserlist>>(
+              future: _Auserlist.getAuserlist(),
               builder: (context, snapshot) {
                 var data = snapshot.data;
                 return ListView.builder(
@@ -61,7 +61,7 @@ class _ChitwanPackageScreenState extends State<ChitwanPackageScreen> {
                                       ),
                                       child: Center(
                                         child: Image.network(
-                                          '${data[index].cimage}',
+                                          '${data[index].aimage}',
                                         ),
                                       ),
                                     ),
@@ -72,14 +72,14 @@ class _ChitwanPackageScreenState extends State<ChitwanPackageScreen> {
                                             CrossAxisAlignment.start,
                                             children: [
                                               Text(
-                                                '${data[index].cname.toString()}',
+                                                '${data[index].aname.toString()}',
                                                 style: TextStyle(
                                                     fontSize: 18,
                                                     fontWeight: FontWeight.w600),
                                               ),
                                               SizedBox(height: 10),
                                               Text(
-                                                '${data[index].cduration.toString()}',
+                                                '${data[index].aduration.toString()}',
                                                 style: TextStyle(
                                                   color: Colors.white70,
                                                   fontSize: 14,
@@ -87,7 +87,7 @@ class _ChitwanPackageScreenState extends State<ChitwanPackageScreen> {
                                                 ),
                                               ),
                                               Text(
-                                                '${data[index].cprice.toString()}',
+                                                '${data[index].aprice.toString()}',
                                                 style: TextStyle(
                                                   color: Colors.white,
                                                   fontSize: 14,
@@ -99,9 +99,9 @@ class _ChitwanPackageScreenState extends State<ChitwanPackageScreen> {
                                                   foregroundColor: MaterialStateProperty.all<Color>(Colors.blue),
                                                 ),
                                                 onPressed: () async {
-                                                  dynamic curls = '${data[index].curl}';
-                                                  if(await canLaunch(curls)) {
-                                                    launch(curls);
+                                                  dynamic aurls = '${data[index].aurl}';
+                                                  if(await canLaunch(aurls)) {
+                                                    launch(aurls);
                                                   }else {
                                                     throw 'could not launch';
                                                   }} ,
@@ -121,4 +121,3 @@ class _ChitwanPackageScreenState extends State<ChitwanPackageScreen> {
     );
   }
 }
-

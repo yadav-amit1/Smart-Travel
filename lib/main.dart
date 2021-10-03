@@ -11,7 +11,7 @@ import 'package:smart_travel_planning_appli/NavBarPages/profile_page.dart';
 import 'NavBarPages/map_page.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_database/firebase_database.dart';
-
+import 'package:url_launcher/url_launcher.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();

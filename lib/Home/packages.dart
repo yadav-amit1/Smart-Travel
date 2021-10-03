@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:smart_travel_planning_appli/Home/Api_service.dart';
 import 'package:smart_travel_planning_appli/Home/search.dart';
 import 'package:smart_travel_planning_appli/Home/user_model.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'package:smart_travel_planning_appli/FilterScreen.dart';
+
 
 class PackageScreen extends StatefulWidget {
 
@@ -12,14 +15,27 @@ class PackageScreen extends StatefulWidget {
 
 class _PackageScreenState extends State<PackageScreen> {
 
+
   FetchUserList _userList = FetchUserList();
+
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        floatingActionButton: FloatingActionButton.extended(
+          onPressed: () { Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => FilterScreen()));
+            // Add your onPressed code here!
+          },
+          label: const Text('Filter'),
+          icon: const Icon(Icons.thumb_up),
+          backgroundColor: Colors.pink,
+        ),
         backgroundColor: Color(0xFF320D36),
         appBar: AppBar(
+
           backgroundColor: Colors.transparent,
           title: Text('Packages'),
           actions: [
@@ -32,10 +48,12 @@ class _PackageScreenState extends State<PackageScreen> {
           ],
         ),
         body: Container(
+
           padding: EdgeInsets.all(10),
           child: FutureBuilder<List<Userlist>>(
               future: _userList.getuserList(),
               builder: (context, snapshot) {
+
                 var data = snapshot.data;
                 return ListView.builder(
                     itemCount: data?.length,
@@ -43,6 +61,16 @@ class _PackageScreenState extends State<PackageScreen> {
                       if (!snapshot.hasData) {
                         return Center(child: CircularProgressIndicator());
                       }
+
+
+                      // void _launchURL() async =>
+                      //     await canLaunch('${data[index].url}') ? await launch('${data[index].url}') : throw 'Could not launch ';
+                      // openURL() async {
+                      //   if(await canLaunch("${data[index].url}")) {
+                      //      await launch("${data[index].url}");
+                      //   }else{throw 'could not launch';
+                      //   }
+                      //  }
                       return GestureDetector(
                         onTap: () => print('Package open'),
                         child: Card(
@@ -99,8 +127,24 @@ class _PackageScreenState extends State<PackageScreen> {
                                               fontWeight: FontWeight.w400,
                                             ),
                                           ),
+
+                                          ElevatedButton(
+                                            style: ButtonStyle(
+                                            ),
+                                            onPressed: () async {
+                                              dynamic urls = '${data[index].url}';
+                                                 if(await canLaunch(urls)) {
+                                                       launch(urls);
+                                                   }else {
+                                                   throw 'could not launch';
+                                                 }} ,
+                                            child: Text('BOOK NOW'),
+                                          )
+
                                         ]),
+
                                   )
+
                                 ],
                               ),
                               // trailing: Text('More Info'),

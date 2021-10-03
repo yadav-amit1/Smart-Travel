@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:smart_travel_planning_appli/Home/Kathmandu_package/KApi_service.dart';
 //import 'package:search_list_api_working/search.dart';
 import 'package:smart_travel_planning_appli/Home/Kathmandu_package/Kuser_model.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class KathmanduPackageScreen extends StatefulWidget {
 
@@ -93,6 +94,19 @@ class _KathmanduPackageScreenState extends State<KathmanduPackageScreen> {
                                           fontWeight: FontWeight.w400,
                                         ),
                                       ),
+                                      TextButton(
+                                        style: ButtonStyle(
+                                          foregroundColor: MaterialStateProperty.all<Color>(Colors.blue),
+                                        ),
+                                        onPressed: () async {
+                                          dynamic kurls = '${data[index].kurl}';
+                                          if(await canLaunch(kurls)) {
+                                            launch(kurls);
+                                          }else {
+                                            throw 'could not launch';
+                                          }} ,
+                                        child: Text('BOOK NOW'),
+                                      )
                                     ])
                                 )],
                             ),
